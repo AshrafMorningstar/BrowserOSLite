@@ -1,0 +1,308 @@
+<!--
+ * @author Ashraf Morningstar
+ * @link https://github.com/AshrafMorningstar
+ * @description Premium Viral Deployment
+ * @design_status Premium_Pro_Max
+ -->
+
+/**
+ * ------------------------------------------------------------
+ * Project: Project Graveyard – The Ultimate Archive
+ * Author : Ashraf Morningstar (https://github.com/AshrafMorningstar)
+ * Tagline: "Code that defines the future. Designed to inspire."
+ * ------------------------------------------------------------
+ */
+
+<!--
+ -----------------------------------------------------------------------------
+ @author      Ashraf Morningstar
+ @github      https://github.com/AshrafMorningstar
+ @repository  Project Graveyard - The Ultimate Archive
+ @quote       "Code that defines the future. Designed to inspire."
+ -----------------------------------------------------------------------------
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrowserOS Lite | Morningstar Edition</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.07);
+            --glass-solid: rgba(20, 20, 20, 0.9);
+            --accent: #00d2ff;
+            --accent-glow: rgba(0, 210, 255, 0.4);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #e0e0e0;
+            --font: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% 50%, #1a1a2e 0%, transparent 100%),
+                url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2564');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: var(--font);
+            color: var(--text);
+        }
+
+        /* Desktop */
+        #desktop {
+            height: calc(100vh - 40px);
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 100px);
+            grid-template-rows: repeat(auto-fill, 110px);
+            gap: 15px;
+            align-content: start;
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            text-align: center;
+        }
+
+        .icon:hover {
+            background: var(--glass);
+        }
+
+        .icon img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+        }
+
+        .icon span {
+            font-size: 0.8rem;
+            text-shadow: 0 1px 4px black;
+        }
+
+        /* Taskbar */
+        #taskbar {
+            height: 40px;
+            background: var(--glass-solid);
+            backdrop-filter: blur(15px);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            border-top: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .start-btn {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 4px;
+            margin-right: 15px;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clock {
+            margin-left: auto;
+            font-size: 0.85rem;
+            padding: 0 10px;
+        }
+
+        /* Window */
+        .window {
+            position: absolute;
+            background: var(--glass-solid);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            min-width: 300px;
+            min-height: 200px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: win-in 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        @keyframes win-in {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .title-bar {
+            height: 35px;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            cursor: move;
+            user-select: none;
+        }
+
+        .title-bar .title { font-size: 0.85rem; font-weight: 600; }
+
+        .title-bar .controls { margin-left: auto; display: flex; gap: 8px; }
+
+        .control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .close { background: #ff5f56; }
+        .min { background: #ffbd2e; }
+        .max { background: #27c93f; }
+
+        .window-content {
+            padding: 20px;
+            flex-grow: 1;
+            overflow: auto;
+        }
+
+        /* Bio App */
+        .bio-header { display: flex; gap: 20px; margin-bottom: 20px; }
+        .bio-header img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--accent); }
+        
+        /* Terminal */
+        .terminal { background: #000; color: #0f0; font-family: 'Consolas', monospace; padding: 10px; height: 100%; }
+    </style>
+  <link rel="stylesheet" href="../../../automations/premium_theme.css">
+</head>
+<body>
+
+    <div id="desktop">
+        <div class="icon" onclick="openWindow('Bio', 'bio')">
+            <img src="https://img.icons8.com/clouds/100/user.png" alt="Bio">
+            <span>Bio.txt</span>
+        </div>
+        <div class="icon" onclick="openWindow('Terminal', 'term')">
+            <img src="https://img.icons8.com/clouds/100/console.png" alt="Terminal">
+            <span>Terminal</span>
+        </div>
+        <div class="icon" onclick="openWindow('Projects', 'proj')">
+            <img src="https://img.icons8.com/clouds/100/opened-folder.png" alt="Projects">
+            <span>Projects</span>
+        </div>
+    </div>
+
+    <div id="taskbar">
+        <div class="start-btn">⚡</div>
+        <div id="active-tasks"></div>
+        <div class="clock" id="timer">12:00 PM</div>
+    </div>
+
+    <div id="window-container"></div>
+
+    <script>
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('timer').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Window Management
+        let zIndex = 100;
+
+        function openWindow(title, type) {
+            const id = 'win-' + Math.random().toString(36).substr(2, 9);
+            const win = document.createElement('div');
+            win.id = id;
+            win.className = 'window';
+            win.style.left = (50 + Math.random() * 50) + 'px';
+            win.style.top = (50 + Math.random() * 50) + 'px';
+            win.style.zIndex = ++zIndex;
+
+            let content = '';
+            if(type === 'bio') {
+                content = `
+                    <div class="bio-header">
+                        <img src="https://github.com/AshrafMorningstar.png" alt="Ashraf">
+                        <div>
+                            <h2>Ashraf Morningstar</h2>
+                            <p style="color: var(--accent)">Lead Architect</p>
+                        </div>
+                    </div>
+                    <p>Welcome to BrowserOS Lite. This is a fully functional web operating system environment designed to showcase the power of modern CSS and JS.</p>
+                `;
+            } else if(type === 'term') {
+                content = `
+                    <div class="terminal">
+                        <p>Morningstar OS [Version 1.0.42]</p>
+                        <p>(c) 2025 Ashraf Corporation.</p>
+                        <p>&nbsp;</p>
+                        <p>> Accessing secure node...</p>
+                        <p>> Handshake successful.</p>
+                        <p>> Viral status: ACTIVE</p>
+                        <p>> system_init --premium</p>
+                    </div>
+                `;
+            } else {
+                content = `<p>Loading projects list...</p><ul><li>ChronoCard</li><li>MoodScroll</li><li>SilentNav</li></ul>`;
+            }
+
+            win.innerHTML = `
+                <div class="title-bar" onmousedown="dragStart(event, '${id}')">
+                    <span class="title">${title}</span>
+                    <div class="controls">
+                        <div class="control min"></div>
+                        <div class="control max"></div>
+                        <div class="control close" onclick="document.getElementById('${id}').remove()"></div>
+                    </div>
+                </div>
+                <div class="window-content">${content}</div>
+            `;
+
+            document.getElementById('window-container').appendChild(win);
+        }
+
+        // Dragging Logic
+        let activeWin = null;
+        let offsetX, offsetY;
+
+        function dragStart(e, id) {
+            activeWin = document.getElementById(id);
+            activeWin.style.zIndex = ++zIndex;
+            offsetX = e.clientX - activeWin.offsetLeft;
+            offsetY = e.clientY - activeWin.offsetTop;
+            document.addEventListener('mousemove', dragMove);
+            document.addEventListener('mouseup', dragEnd);
+        }
+
+        function dragMove(e) {
+            if (activeWin) {
+                activeWin.style.left = (e.clientX - offsetX) + 'px';
+                activeWin.style.top = (e.clientY - offsetY) + 'px';
+            }
+        }
+
+        function dragEnd() {
+            activeWin = null;
+            document.removeEventListener('mousemove', dragMove);
+            document.removeEventListener('mouseup', dragEnd);
+        }
+    </script>
+</body>
+</html>
